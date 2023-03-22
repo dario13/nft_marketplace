@@ -1,0 +1,18 @@
+{
+  "packages": [
+    "Frontend/*",
+    "Blockchain/*"
+  ],
+  "useNx": false,
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "registry": "https://npm.pkg.github.com/dario13"
+    },
+    "version": {
+      "message": "chore(release): publish %s"
+    }
+  },
+  "version": "0.0.15"
+}

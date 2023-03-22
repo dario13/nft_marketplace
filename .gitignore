@@ -1,0 +1,13 @@
+Frontend/.next
+Frontend/build
+Backend/typechain-types
+.vscode
+node_modules
+lerna-debug.log
+yarn-error.log
+cache/
+build/
+artifacts/
+coverage*
+deployments/
+.env
