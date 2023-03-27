@@ -4,5 +4,5 @@
     "baseUrl": "."
   },
   "include": ["**/*.ts"],
-  "files": ["./hardhat.config.ts", "./helper-hardhat-config.ts"]
+  "files": ["./hardhat.config.ts"]
 }
