@@ -10,17 +10,17 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   log('----------------------------------------------------')
 
   try {
-    await deploy('ChainGems', {
+    await deploy('USDtoken', {
       from: deployer,
       args: [],
       log: true,
     })
   } catch (error) {
-    log('ChainGems deployment failed:', error)
+    log('USDtoken deployment failed:', error)
   }
 
   log('----------------------------------------------------')
 }
 
 export default func
-func.tags = ['ChainGems']
+func.tags = ['USDtoken']

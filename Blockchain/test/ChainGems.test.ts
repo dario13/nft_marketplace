@@ -16,7 +16,7 @@ const setup = async () => {
   }
 }
 
-describe('MomToken contract tests', () => {
+describe('ChainGems contract tests', () => {
   it('should assign the initial native token supply to the deployer', async () => {
     // Given
     const { ChainGemsContract, users } = await setup()
