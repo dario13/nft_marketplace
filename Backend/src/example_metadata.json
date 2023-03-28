@@ -1,0 +1,56 @@
+{
+  "name": "B.ZERO1 RING",
+  "description": "Drawing its inspiration from the most renowned amphitheater of the world, the Colosseum, the B.zero1 ring is a true statement of Bulgari’s creative vision, challenging the very essence of jewellery design. The purity of its distinctive spiral, is a metaphor for the harmony of past, present and future - reflected in the magnificence of the eternal city - and the emblem of the pioneering spirit of the collection",
+  "image": "https://media2.bulgari.com/f_auto,q_auto,c_pad,h_520,w_520/production/dw5852c57f/images/images/457369.png",
+  "attributes": {
+    "serialNumbers": [
+      "38592647391374",
+      "19862487241893",
+      "71938264412576",
+      "55673492109567",
+      "90123765587382",
+      "44324986758271",
+      "22681095543913",
+      "77539922473763",
+      "67133861167804",
+      "99705520451873",
+      "40819149809895",
+      "18372844725698",
+      "55994533620190",
+      "73914675069202",
+      "99483034424684"
+    ],
+    "batchNumber": "542239",
+    "manufacturer": "Bulgari",
+    "madeIn": "Italy",
+    "category": "Rings",
+    "materials": ["Yellow gold"],
+    "manufactureDate": "2022-10-13",
+    "weight": {
+      "value": 10,
+      "unit": "g"
+    },
+    "dimensions": {
+      "length": {
+        "value": 5,
+        "unit": "mm"
+      },
+      "width": {
+        "value": 5,
+        "unit": "mm"
+      },
+      "height": {
+        "value": 1,
+        "unit": "mm"
+      }
+    },
+    "certificate": {
+      "certifyingAuthority": "Jewelers of America",
+      "certificateNumber": "73914675069879"
+    },
+    "additionalImages": [
+      "https://media2.bulgari.com/f_auto,q_auto,c_pad,h_520,w_520/production/dw18cf0372/images/images/457370.png",
+      "https://media2.bulgari.com/f_auto,q_auto,c_pad,h_520,w_520/production/dw336ecf0e/images/images/457368.png"
+    ]
+  }
+}
