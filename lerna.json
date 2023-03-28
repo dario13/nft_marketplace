@@ -1,8 +1,5 @@
 {
-  "packages": [
-    "Frontend/*",
-    "Blockchain/*"
-  ],
+  "packages": ["Frontend/*", "Blockchain/*", "Backend/*"],
   "useNx": false,
   "npmClient": "yarn",
   "useWorkspaces": true,

@@ -4,7 +4,8 @@
   "license": "MIT",
   "workspaces": [
     "Frontend",
-    "Backend"
+    "Backend",
+    "Blockchain"
   ],
   "scripts": {
     "build": "lerna run build --stream",
