@@ -6,6 +6,7 @@ export type NetWorkInfo = {
   isLocalNetwork: boolean
   chainId: number
   deployer: SignerWithAddress
+  userA: SignerWithAddress
 }
 
 task(
@@ -20,12 +21,13 @@ task(
 
     const isLocalNetwork: boolean = chainId === '31337'
 
-    const [deployer] = await hre.ethers.getSigners()
+    const [deployer, , userA] = await hre.ethers.getSigners()
 
     return {
       isLocalNetwork,
       chainId: Number(chainId),
       deployer,
+      userA,
     }
   },
 )
