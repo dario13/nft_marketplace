@@ -1,19 +1,19 @@
 import { create } from 'zustand'
 
 const initialState = {
-  momBalance: '0',
+  coinsBalance: '0',
   transactionInProgress: false,
 }
 
 type ExchangeState = {
-  momBalance: string
+  coinsBalance: string
   transactionInProgress: boolean
-  setMomBalance: (momBalance: string) => void
+  setCoinsBalance: (coinsBalance: string) => void
   setTransactionInProgress: (transactionInProgress: boolean) => void
 }
 
 export const useExchangeStore = create<ExchangeState>((set) => ({
   ...initialState,
-  setMomBalance: (momBalance: string) => set({ momBalance }),
+  setCoinsBalance: (coinsBalance: string) => set({ coinsBalance }),
   setTransactionInProgress: (transactionInProgress: boolean) => set({ transactionInProgress }),
 }))
