@@ -30,4 +30,4 @@ jobs:
             git config user.email "${{ github.actor}}@users.noreply.github.com"
             git stash
             git checkout ${{ github.ref }}
-            yarn lerna publish from-git --yes
+            yarn lerna version --conventional-commits --yes && yarn lerna publish from-git --yes
