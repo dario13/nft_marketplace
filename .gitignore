@@ -1,6 +1,7 @@
 Frontend/.next
 Frontend/build
 Blockchain/typechain-types
+Blockchain/deployed-contract-addresses.json
 .vscode
 node_modules
 lerna-debug.log
