@@ -11,3 +11,4 @@ artifacts/
 coverage*
 deployments/
 .env
+.npmrc
