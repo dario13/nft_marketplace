@@ -7,6 +7,7 @@
   "version": "0.0.16",
   "license": "MIT",
   "dependencies": {
+    "@dario13/nft_marketplace_blockchain": "0.0.16",
     "@react-spring/types": "^9.7.1",
     "@react-spring/web": "^9.7.1",
     "@tailwindcss/typography": "^0.5.2",
