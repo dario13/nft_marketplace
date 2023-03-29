@@ -2503,6 +2503,22 @@
     pify "^5.0.0"
     semver "^7.3.4"
 
+"@lerna/conventional-commits@^6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@lerna/conventional-commits/-/conventional-commits-6.4.1.tgz#b8d44a8a71865b4d37b900137acef623f3a0a11b"
+  integrity sha512-NIvCOjStjQy5O8VojB7/fVReNNDEJOmzRG2sTpgZ/vNS4AzojBQZ/tobzhm7rVkZZ43R9srZeuhfH9WgFsVUSA==
+  dependencies:
+    "@lerna/validation-error" "6.4.1"
+    conventional-changelog-angular "^5.0.12"
+    conventional-changelog-core "^4.2.4"
+    conventional-recommended-bump "^6.1.0"
+    fs-extra "^9.1.0"
+    get-stream "^6.0.0"
+    npm-package-arg "8.1.1"
+    npmlog "^6.0.2"
+    pify "^5.0.0"
+    semver "^7.3.4"
+
 "@lerna/create-symlink@5.6.2":
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/@lerna/create-symlink/-/create-symlink-5.6.2.tgz#9bd327128e30a144ef50a45242433a2325081391"
@@ -2995,6 +3011,13 @@
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/@lerna/validation-error/-/validation-error-5.6.2.tgz#75310749d94395f009c67a8fd47e146a86ce2943"
   integrity sha512-4WlDUHaa+RSJNyJRtX3gVIAPVzjZD2tle8AJ0ZYBfdZnZmG0VlB2pD1FIbOQPK8sY2h5m0cHLRvfLoLncqHvdQ==
+  dependencies:
+    npmlog "^6.0.2"
+
+"@lerna/validation-error@6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@lerna/validation-error/-/validation-error-6.4.1.tgz#2cab92c2be395158c3d65fa57ddb73892617d7e8"
+  integrity sha512-fxfJvl3VgFd7eBfVMRX6Yal9omDLs2mcGKkNYeCEyt4Uwlz1B5tPAXyk/sNMfkKV2Aat/mlK5tnY13vUrMKkyA==
   dependencies:
     npmlog "^6.0.2"
 

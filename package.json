@@ -24,5 +24,8 @@
     "lerna": "^5.1.4",
     "lint-staged": "^13.0.3"
   },
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "dependencies": {
+    "@lerna/conventional-commits": "^6.4.1"
+  }
 }
