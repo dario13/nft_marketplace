@@ -30,12 +30,12 @@ export const useContractConnection = (): ContractConnectionState => {
   }, [signer, CHAIN_GEMS_CONTRACT_ADDRESS])
 
   const chainGemsExchangeContract: ChainGemsExchange = useMemo(() => {
-    return ChainGemsExchange__factory.connect(USD_TOKEN_CONTRACT_ADDRESS, signer!)
-  }, [signer, USD_TOKEN_CONTRACT_ADDRESS])
+    return ChainGemsExchange__factory.connect(CHAIN_GEMS_EXCHANGE_CONTRACT_ADDRESS, signer!)
+  }, [signer, CHAIN_GEMS_EXCHANGE_CONTRACT_ADDRESS])
 
   const usdTokenContract: USDtoken = useMemo(() => {
-    return USDtoken__factory.connect(CHAIN_GEMS_EXCHANGE_CONTRACT_ADDRESS, signer!)
-  }, [signer, CHAIN_GEMS_EXCHANGE_CONTRACT_ADDRESS])
+    return USDtoken__factory.connect(USD_TOKEN_CONTRACT_ADDRESS, signer!)
+  }, [signer, USD_TOKEN_CONTRACT_ADDRESS])
 
   return {
     chainGemsContract,
