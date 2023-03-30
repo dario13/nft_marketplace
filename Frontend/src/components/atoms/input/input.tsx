@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge'
 import { InputProps } from './input.props'
 import { useIMask } from 'react-imask'
 import { useMergeRefs } from '@/hooks/use-merge-refs'
+import { MaskedInput } from './masked-input'
 
 const inputColor = {
   primary: 'input-primary',
@@ -17,7 +18,7 @@ const inputColor = {
   ghost: 'input-ghost',
 }
 
-const inputSize = {
+const inputPredefinedSize = {
   xs: 'input-xs',
   sm: 'input-sm',
   md: 'input-md',
@@ -46,47 +47,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       type,
       mask = { options: { mask: '' } },
       onChange,
-      size = 'md',
+      inputSize = 'md',
       defaultValue,
       ...props
     } = inputProps
-
-    const [opts, setOpts] = useState(mask.options)
-
-    const {
-      ref: imaskRef,
-      value: inputMaskedValue,
-      setValue,
-    } = useIMask(opts, {
-      onComplete(value, maskRef) {
-        mask.onComplete && mask.onComplete(value, maskRef)
-      },
-      onAccept(value, maskRef) {
-        mask.onAccept && mask.onAccept(value, maskRef)
-      },
-    })
-
-    const mergedRefs = useMergeRefs(imaskRef, ref)
-
-    useEffect(() => {
-      setOpts(mask.options)
-
-      return () => {
-        setValue('')
-      }
-    }, [mask.options])
 
     const inpColor = color ? inputColor[color] : ''
 
     const conditionalInputClasses = clsx({
       [inpColor]: color,
-      [inputSize[size]]: size,
+      [inputPredefinedSize[inputSize]]: inputSize,
       'input-bordered': bordered,
       'focus:outline-offset-0': true,
     })
 
     const conditionalPrexifAndSuffixClass = clsx({
-      [preffixAndSuffixSize[size]]: size,
+      [preffixAndSuffixSize[inputSize]]: inputSize,
     })
 
     const inputClasses = twMerge('input input-group', conditionalInputClasses, className)
@@ -94,24 +70,40 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <FlexBox gap="0.2rem">
-        {label && <Text size={size} bold={true} text={label} />}
+        {label && <Text size={inputSize} bold={true} text={label} />}
         <FlexBox flexDirection="row" className={preffixAndSuffixClasses} flex={'0'}>
-          {prefix && <Text size={size} text={prefix} />}
+          {prefix && <Text size={inputSize} text={prefix} />}
 
-          <input
-            {...props}
-            ref={mergedRefs}
-            type={type}
-            placeholder={placeholder}
-            data-theme={dataTheme}
-            data-testid="Input"
-            value={value}
-            className={inputClasses}
-            onChange={mask.options.mask ? undefined : onChange}
-            defaultValue={mask.options.mask ? inputMaskedValue : defaultValue}
-          />
+          {mask.options.mask ? (
+            <MaskedInput
+              {...props}
+              ref={ref}
+              type={type}
+              placeholder={placeholder}
+              data-theme={dataTheme}
+              data-testid="Input"
+              className={inputClasses}
+              onChange={onChange}
+              options={mask.options}
+              onAccept={mask.onAccept}
+              onComplete={mask.onComplete}
+            />
+          ) : (
+            <input
+              {...props}
+              ref={ref}
+              type={type}
+              placeholder={placeholder}
+              data-theme={dataTheme}
+              data-testid="Input"
+              value={value}
+              className={inputClasses}
+              onChange={onChange}
+              defaultValue={defaultValue}
+            />
+          )}
 
-          {suffix && <Text size={size} text={suffix} />}
+          {suffix && <Text size={inputSize} text={suffix} />}
         </FlexBox>
       </FlexBox>
     )
