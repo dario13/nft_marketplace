@@ -21,6 +21,7 @@ export const useWallet = (): WalletState => {
     disconnect,
   } = useWalletStore()
 
+  // Returns true if the wallet is installed
   const checkIfWalletIsInstalled = () => {
     return typeof window.ethereum !== 'undefined'
   }
@@ -38,7 +39,11 @@ export const useWallet = (): WalletState => {
     } catch (e) {
       console.error(e)
     }
-  }, [])
+  }, [setAccountConnected, setSigner, isAccountLoggedOut])
+
+  useEffect(() => {
+    fetchSigner()
+  }, [fetchSigner])
 
   useEffect(() => {
     if (!checkIfWalletIsInstalled()) {
@@ -47,7 +52,6 @@ export const useWallet = (): WalletState => {
     }
 
     setWalletInstalled(true)
-    fetchSigner()
   }, [])
 
   useEffect(() => {
