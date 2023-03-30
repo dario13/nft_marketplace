@@ -69,4 +69,34 @@ describe('ChainGemsExchange contract tests', () => {
     expect(userBalanceBeforeSell).to.equal(0)
     expect(userBalanceAfterSell.toNumber()).to.be.approximately(tokenAmountToSell.toNumber(), 1000)
   })
+  it('should get stablecoin amount in', async () => {
+    // Given
+    const { users } = await setup()
+    const { userA } = users
+    const tokenAmountToBuy = '1000'
+
+    // When
+    const stablecoinAmountOut = await userA.ChainGemsExchange.getStableCoinAmountIn(
+      0,
+      tokenAmountToBuy,
+    )
+
+    // Then
+    expect(stablecoinAmountOut.toNumber()).to.be.approximately(Number(tokenAmountToBuy), 10)
+  })
+  it('should get token amount out', async () => {
+    // Given
+    const { users } = await setup()
+    const { userA } = users
+    const tokenAmountToSell = '1000'
+
+    // When
+    const tokenAmountOut = await userA.ChainGemsExchange.getStableCoinAmountOut(
+      0,
+      tokenAmountToSell,
+    )
+
+    // Then
+    expect(tokenAmountOut.toNumber()).to.be.approximately(Number(tokenAmountToSell), 10)
+  })
 })
