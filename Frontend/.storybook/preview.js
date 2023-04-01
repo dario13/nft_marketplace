@@ -1,6 +1,5 @@
 import '../src/styles/global.css'
-import React, { useEffect } from 'react'
-import { useTheme } from '@/hooks/use-theme'
+import React from 'react'
 import { ThemeProvider } from '@/contexts/theme/theme-provider'
 
 export const parameters = {
