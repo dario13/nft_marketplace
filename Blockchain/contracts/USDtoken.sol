@@ -9,7 +9,11 @@ import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
  * @notice This contract creates a USD token.
  */
 contract USDtoken is ERC20 {
-    constructor() ERC20('USDtoken', 'USD') {
-        _mint(msg.sender, 10 * 18 ** decimals());
+    constructor() ERC20('USDtoken', 'USDT') {
+        _mint(msg.sender, 10 ** 18);
+    }
+
+    function decimals() public pure override returns (uint8) {
+        return 0;
     }
 }
