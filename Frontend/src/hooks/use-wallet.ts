@@ -21,30 +21,36 @@ export const useWallet = (): WalletState => {
     disconnect,
   } = useWalletStore()
 
-  // Returns true if the wallet is installed
+  // Check if the wallet is installed
   const checkIfWalletIsInstalled = () => {
     return typeof window.ethereum !== 'undefined'
   }
 
+  // Fetch signer
   const fetchSigner = useCallback(async () => {
-    try {
-      if (isAccountLoggedOut) return
+    const fetch = async () => {
+      try {
+        if (isAccountLoggedOut) return
 
-      const provider = new ethers.providers.Web3Provider(window.ethereum as any, 'any')
+        const provider = new ethers.providers.Web3Provider(window.ethereum as any, 'any')
 
-      const signerWithAddress = await SignerWithAddress.create(provider.getSigner() as any)
+        const signerWithAddress = await SignerWithAddress.create(provider.getSigner() as any)
 
-      setAccountConnected(true)
-      setSigner(signerWithAddress)
-    } catch (e) {
-      console.error(e)
+        setAccountConnected(true)
+        setSigner(signerWithAddress)
+      } catch (e) {
+        console.error(e)
+      }
     }
+
+    fetch()
   }, [setAccountConnected, setSigner, isAccountLoggedOut])
 
   useEffect(() => {
     fetchSigner()
   }, [fetchSigner])
 
+  // Check if the wallet is installed and update the state
   useEffect(() => {
     if (!checkIfWalletIsInstalled()) {
       setWalletInstalled(false)
@@ -54,6 +60,7 @@ export const useWallet = (): WalletState => {
     setWalletInstalled(true)
   }, [])
 
+  // Add listeners to handle wallet and chain changes
   useEffect(() => {
     const checkIfWalletHasChanged = () => {
       window.ethereum?.on('accountsChanged', () => {
@@ -63,12 +70,15 @@ export const useWallet = (): WalletState => {
         disconnect()
       })
     }
+
     checkIfWalletHasChanged()
+
     return () => {
       window.ethereum?.removeAllListeners()
     }
-  })
+  }, [disconnect])
 
+  // Connect to the wallet
   const connect = async () => {
     if (isAccountConnected) return
     if (isWalletInstalled) {
