@@ -35,13 +35,33 @@ WithDateMask.args = {
     options: {
       mask: Date,
       overwrite: true,
-      lazy: false,
+      lazy: true,
       autofix: true,
       blocks: {
         d: { mask: IMask.MaskedRange, placeholderChar: 'D', from: 1, to: 31, maxLength: 2 },
         m: { mask: IMask.MaskedRange, placeholderChar: 'M', from: 1, to: 12, maxLength: 2 },
         Y: { mask: IMask.MaskedRange, placeholderChar: 'Y', from: 1900, to: 2999, maxLength: 4 },
       },
+    },
+  },
+}
+
+export const WithNumbers = Template.bind({})
+
+WithNumbers.args = {
+  label: 'Numbers',
+
+  mask: {
+    options: {
+      mask: Number,
+      scale: 0,
+      signed: false,
+      thousandsSeparator: '',
+      radix: '.',
+      mapToRadix: ['.'],
+      max: 1000000,
+      min: 0,
+      lazy: true,
     },
   },
 }

@@ -20,7 +20,7 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
 
     const mergedRefs = useMergeRefs(imaskRef, ref)
 
-    return <input {...rest} ref={mergedRefs} defaultValue={inputMaskedValue} />
+    return <input {...rest} ref={mergedRefs} />
   },
 )
 

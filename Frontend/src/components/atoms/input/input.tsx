@@ -1,10 +1,8 @@
 import { FlexBox, Text } from '@/components/atoms'
 import clsx from 'clsx'
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { InputProps } from './input.props'
-import { useIMask } from 'react-imask'
-import { useMergeRefs } from '@/hooks/use-merge-refs'
 import { MaskedInput } from './masked-input'
 
 const inputColor = {
@@ -68,40 +66,29 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const inputClasses = twMerge('input input-group', conditionalInputClasses, className)
     const preffixAndSuffixClasses = twMerge('input-group', conditionalPrexifAndSuffixClass)
 
+    const InputComponent = mask.options.mask ? MaskedInput : 'input'
+
     return (
       <FlexBox gap="0.2rem">
         {label && <Text size={inputSize} bold={true} text={label} />}
         <FlexBox flexDirection="row" className={preffixAndSuffixClasses} flex={'0'}>
           {prefix && <Text size={inputSize} text={prefix} />}
 
-          {mask.options.mask ? (
-            <MaskedInput
-              {...props}
-              ref={ref}
-              type={type}
-              placeholder={placeholder}
-              data-theme={dataTheme}
-              data-testid="Input"
-              className={inputClasses}
-              onChange={onChange}
-              options={mask.options}
-              onAccept={mask.onAccept}
-              onComplete={mask.onComplete}
-            />
-          ) : (
-            <input
-              {...props}
-              ref={ref}
-              type={type}
-              placeholder={placeholder}
-              data-theme={dataTheme}
-              data-testid="Input"
-              value={value}
-              className={inputClasses}
-              onChange={onChange}
-              defaultValue={defaultValue}
-            />
-          )}
+          <InputComponent
+            {...props}
+            ref={ref}
+            type={type}
+            data-theme={dataTheme}
+            data-testid="Input"
+            className={inputClasses}
+            onChange={mask ? undefined : onChange}
+            options={mask.options}
+            onAccept={mask.onAccept}
+            onComplete={mask.onComplete}
+            placeholder={placeholder}
+            value={mask ? undefined : value}
+            defaultValue={mask ? undefined : defaultValue}
+          />
 
           {suffix && <Text size={inputSize} text={suffix} />}
         </FlexBox>
@@ -112,4 +99,4 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
 Input.displayName = 'Input'
 
-export { Input }
+export default React.memo(Input)
