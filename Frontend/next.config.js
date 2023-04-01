@@ -1,4 +1,4 @@
-/*const withTM = require('next-transpile-modules')(['@dario13/nft_marketplace_blockchain'])
+const withTM = require('next-transpile-modules')(['@dario13/nft_marketplace_blockchain'])
 
 module.exports = withTM({
   reactStrictMode: true,
@@ -6,4 +6,3 @@ module.exports = withTM({
     domains: ['placeimg.com'],
   },
 })
-*/
