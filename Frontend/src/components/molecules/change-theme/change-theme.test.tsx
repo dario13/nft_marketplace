@@ -8,12 +8,12 @@ const renderedComponent = () => {
 }
 
 describe('ChangeTheme', () => {
-  it('when the component is rendered, the default theme is light', () => {
+  it('when the component is rendered, the default theme is bumblebee', () => {
     // Given
     const { container } = renderedComponent()
 
     // When
-    const renderedTheme = container.querySelector('button[data-theme="light"]')
+    const renderedTheme = container.querySelector('button[data-theme="bumblebee"]')
 
     // Then
     expect(renderedTheme).toBeInTheDocument()
@@ -25,7 +25,7 @@ describe('ChangeTheme', () => {
 
     // When
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const renderedTheme = container.querySelector('button[data-theme="light"]')!
+    const renderedTheme = container.querySelector('button[data-theme="bumblebee"]')!
 
     await act(async () => {
       fireEvent.click(renderedTheme)

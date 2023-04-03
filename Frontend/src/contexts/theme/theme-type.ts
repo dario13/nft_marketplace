@@ -1,1 +1,1 @@
-export type DataTheme = 'light' | 'dark'
+export type DataTheme = 'bumblebee' | 'luxury'

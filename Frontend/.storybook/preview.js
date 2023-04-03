@@ -11,7 +11,7 @@ export const parameters = {
   },
 }
 
-export const args = { dataTheme: 'dark' }
+export const args = { dataTheme: 'luxury' }
 
 export const decorators = [
   (Story) => {
