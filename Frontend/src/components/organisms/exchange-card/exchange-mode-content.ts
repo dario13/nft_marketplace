@@ -1,5 +1,5 @@
 import { ExchangeMode } from './exchange-card.props'
-import diamond from '../../../../public/images/favicon/android-chrome-144x144.png'
+import diamond from '../../../../public/images/favicon/android-chrome-192x192.png'
 import handReceiving from '../../../../public/images/hand-icon.png'
 
 const buyTitle = 'Start selling your jewerly now'

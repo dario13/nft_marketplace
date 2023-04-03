@@ -10,7 +10,7 @@ const InfoCard = React.memo((props: { exchangeMode: ExchangeMode }) => {
 
   return (
     <FlexBox maxWidth="40%">
-      <Card color={theme === 'dark' ? 'neutral' : 'base300'}>
+      <Card color={theme === 'luxury' ? 'neutral' : 'base300'}>
         <FlexBox
           padding="3.5rem"
           flexDirection="column"
@@ -19,7 +19,7 @@ const InfoCard = React.memo((props: { exchangeMode: ExchangeMode }) => {
           gap="3.5rem"
         >
           <Text size="IIIxl" bold align="center" text={title} />
-          <Image src={image} width="100%" height={'95%'} />
+          <Image src={image} width="100%" height="100%" />
           <Text size="xl" align="center" text={description} />
         </FlexBox>
       </Card>
