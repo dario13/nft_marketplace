@@ -7,7 +7,7 @@ export type ThemeContextType = {
   toggle: () => void
 }
 
-export const initialDefaultTheme = 'light'
+export const initialDefaultTheme = 'bumblebee'
 
 export const initialStateThemeContext: ThemeContextType = {
   theme: initialDefaultTheme,

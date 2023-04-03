@@ -1,9 +1,8 @@
-import { Button, FlexBox, Image, Navbar } from '@/components/atoms'
+import { Button, FlexBox, Image, Navbar, Text } from '@/components/atoms'
 import { DropdownHamburger } from '@/components/molecules/dropdown-hamburger'
 import { useMedia } from '@/hooks/use-media'
 import React from 'react'
-import logoDesktop from '../../../../public/images/logo.png'
-import logoMobile from '../../../../public/images/favicon/android-chrome-144x144.png'
+import logo from '../../../../public/images/logo.png'
 import { Menu } from '@/components/atoms/dropdown/dropdown.props'
 import { ChangeTheme } from '@/components/molecules/change-theme'
 import { WalletButton } from '@/components/molecules/wallet-button'
@@ -14,20 +13,29 @@ const MainNavbar = () => {
 
   const menuItems: Menu = [
     {
-      label: 'Play',
-      href: '/play',
+      label: 'Exchange',
+      href: '/exchange',
     },
   ]
 
   const renderLogo = () => {
     return (
       <Navigate href="/" asAButton>
-        <Image
-          src={isMobile ? logoMobile : logoDesktop}
-          width={isMobile ? 50 : 120}
-          height={isMobile ? 50 : 25}
-          title="logo"
-        />
+        <FlexBox flexDirection="row" gap="0.5rem" alignItems="center">
+          <FlexBox flexDirection="row" paddingTop="0.3rem">
+            <Image src={logo} width={isMobile ? 50 : 25} height={isMobile ? 50 : 25} title="logo" />
+          </FlexBox>
+          {!isMobile && (
+            <FlexBox flexDirection="row">
+              <Text bold size="IIIxl" className="text-primary">
+                {'Chain'}
+              </Text>
+              <Text bold size="IIIxl">
+                {'Gem'}
+              </Text>
+            </FlexBox>
+          )}
+        </FlexBox>
       </Navigate>
     )
   }

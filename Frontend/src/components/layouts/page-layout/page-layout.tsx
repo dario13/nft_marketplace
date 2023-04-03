@@ -2,9 +2,12 @@ import { FlexBox } from '@/components/atoms'
 import { MainNavbar } from '@/components/organisms/main-navbar'
 import React from 'react'
 import { PageLayoutProps } from './page-layout.props'
+import { twMerge } from 'tailwind-merge'
 
 const PageLayout = (pageLayoutProps: PageLayoutProps) => {
-  const { content } = pageLayoutProps
+  const { content, className } = pageLayoutProps
+
+  const classes = twMerge('pageLayout', className, 'bg-base-200')
 
   return (
     <FlexBox
@@ -12,11 +15,11 @@ const PageLayout = (pageLayoutProps: PageLayoutProps) => {
       paddingTop="1rem"
       paddingLeft="0.8rem"
       paddingRight="0.8rem"
-      className="bg-base-200"
+      className={classes}
       height="100vh"
       minHeight="100vh"
     >
-      <FlexBox flex="0">
+      <FlexBox flex="0" className="z-10">
         <MainNavbar />
       </FlexBox>
       <FlexBox flex="1">{content}</FlexBox>

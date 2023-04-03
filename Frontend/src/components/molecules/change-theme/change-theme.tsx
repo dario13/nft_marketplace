@@ -6,16 +6,16 @@ import React, { useEffect, useState } from 'react'
 
 const ChangeTheme = () => {
   const { toggle, theme } = useTheme()
-  // const active = theme === 'light' // If theme is light, then active is true and the icon is the SunIcon
-  const [active, setActive] = useState(theme === 'light')
+  // const active = theme === 'bumblebee' // If theme is bumblebee, then active is true and the icon is the SunIcon
+  const [active, setActive] = useState(theme === 'bumblebee')
 
   const handleClick = () => {
     toggle()
-    setActive(theme === 'light')
+    setActive(theme === 'bumblebee')
   }
 
   useEffect(() => {
-    setActive(theme === 'light')
+    setActive(theme === 'bumblebee')
   }, [theme])
 
   const debouncedHandleClick = debounce(handleClick, 50)

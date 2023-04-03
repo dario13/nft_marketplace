@@ -6,4 +6,4 @@ export const brandColors = ['primary', 'secondary', 'accent'] as const
 export const componentColors = [...brandColors, 'ghost', ...componentStatuses] as const
 export const bgColors = ['base100', 'base200', 'base300', 'neutral'] as const
 
-export const defaultTheme = 'light'
+export const defaultTheme = 'bumblebee'

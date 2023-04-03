@@ -18,7 +18,7 @@ export const useTheme = (): useThemeType => {
   })
 
   const toggle = () => {
-    const theme = context.theme === 'light' ? 'dark' : 'light'
+    const theme = context.theme === 'bumblebee' ? 'luxury' : 'bumblebee'
     context.theme = theme
     setTheme(theme)
   }
