@@ -14,6 +14,8 @@ const ListSellCard: React.FC = () => {
       flexWrap="wrap"
       gap="1.5rem"
       justifyContent="center"
+      height={isMobile ? undefined : '40vh'}
+      flex={isMobile ? undefined : '0'}
     >
       {nfts.length === 0 && <Text>{'There are no NFTs to sell at this time'}</Text>}
 

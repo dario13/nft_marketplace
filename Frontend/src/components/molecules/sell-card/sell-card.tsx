@@ -21,9 +21,9 @@ const SellCard: React.FC<SellCardProps> = ({ nftData }) => {
   }
 
   return (
-    <FlexBox height="40vh">
+    <FlexBox>
       <Card color="base200">
-        <FlexBox flexDirection="column" justifyContent="space-between" className="p-8" width="100%">
+        <FlexBox flexDirection="column" justifyContent="space-between" className="p-8">
           <FlexBox onClick={handleToggleDescription} className="cursor-pointer">
             <Text size="IIxl" bold>
               {nftData.name}
@@ -34,7 +34,7 @@ const SellCard: React.FC<SellCardProps> = ({ nftData }) => {
               <Image src={nftData.image} alt={nftData.name} width={200} height={200} />
             </FlexBox>
           </FlexBox>
-          <FlexBox>
+          <FlexBox flexDirection="column" justifyContent="flex-end">
             <Button color="primary" text="Sell" />
           </FlexBox>
         </FlexBox>
