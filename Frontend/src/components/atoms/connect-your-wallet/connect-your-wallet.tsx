@@ -1,3 +1,4 @@
+import React from 'react'
 import { FlexBox, Text } from '@/components/atoms'
 
 const ConnectYourWallet: React.FC = () => {

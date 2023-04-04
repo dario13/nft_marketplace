@@ -3,6 +3,6 @@ const withTM = require('next-transpile-modules')(['@dario13/nft_marketplace_bloc
 module.exports = withTM({
   reactStrictMode: true,
   images: {
-    domains: ['placeimg.com'],
+    domains: ['placeimg.com', 'media2.bulgari.com'],
   },
 })

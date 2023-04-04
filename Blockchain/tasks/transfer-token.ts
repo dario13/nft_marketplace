@@ -12,7 +12,6 @@ task(
   .setAction(async (taskArgs, hre) => {
     const { ethers } = hre
     const { to, id } = taskArgs
-    await hre.deployments.fixture(['ChainGems'])
 
     const { deployer }: NetWorkInfo = await hre.run('networkInfo')
 
@@ -22,7 +21,11 @@ task(
 
     await deployerConnectedToContract.safeTransferFrom(deployer.address, to, id, 1, '0x')
 
-    const balance = await deployerConnectedToContract.balanceOf(to, id)
+    const receiverConnectedToContract = chainGemsContract.connect(ethers.provider.getSigner(to))
+
+    const balance = await receiverConnectedToContract.balanceOf(to, id)
+
+    console.log('ChainGems Contract Address: ', chainGemsContract.address)
 
     console.log(`Balance of token id ${id} for address ${to}: ${balance}`)
   })
