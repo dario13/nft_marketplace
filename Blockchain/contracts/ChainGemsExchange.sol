@@ -7,6 +7,7 @@ import '@openzeppelin/contracts/utils/math/SafeMath.sol';
 import '@openzeppelin/contracts/utils/Address.sol';
 import {MaxStableCoinAmountTooLow, MinStableCoinAmountTooHigh} from './Errors.sol';
 import '@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol';
+import '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol';
 
 /**
  * @title An exchange for ChainGems tokens.
@@ -15,6 +16,7 @@ import '@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol';
 contract ChainGemsExchange is ERC1155Holder {
     using SafeMath for uint256;
     using Address for address;
+    using SafeERC20 for IERC20;
 
     IERC1155 public chainGems;
     uint256 public nativeTokenId;
@@ -59,7 +61,7 @@ contract ChainGemsExchange is ERC1155Holder {
         uint256 stableCoinAmount = getStableCoinAmountIn(tokenId, tokenAmount);
         if (stableCoinAmount > maxStableCoinAmount) revert MaxStableCoinAmountTooLow();
 
-        stableCoin.transferFrom(msg.sender, address(this), stableCoinAmount);
+        stableCoin.safeTransferFrom(msg.sender, address(this), stableCoinAmount);
         chainGems.safeTransferFrom(address(this), msg.sender, tokenId, tokenAmount, '');
 
         emit TokenPurchase(msg.sender, tokenId, tokenAmount, stableCoinAmount);
@@ -81,7 +83,7 @@ contract ChainGemsExchange is ERC1155Holder {
         if (stableCoinAmount < minStableCoinAmount) revert MinStableCoinAmountTooHigh();
 
         chainGems.safeTransferFrom(msg.sender, address(this), tokenId, tokenAmount, '');
-        stableCoin.transfer(msg.sender, stableCoinAmount);
+        stableCoin.safeTransfer(msg.sender, stableCoinAmount);
 
         emit TokenSale(msg.sender, tokenId, tokenAmount, stableCoinAmount);
     }
