@@ -3,7 +3,6 @@ import { deployments, ethers, getNamedAccounts } from 'hardhat'
 import { setupNamedUsers } from './utils/setup-users'
 import { ChainGems, USDtoken } from 'typechain-types'
 import { ChainGemsExchange } from 'typechain-types/contracts/Exchange.sol'
-import { BigNumber } from 'ethers'
 
 const setup = async () => {
   await deployments.fixture(['ChainGems', 'USDtoken', 'ChainGemsExchange'])
@@ -18,16 +17,19 @@ const setup = async () => {
     ChainGemsExchange: ChainGemsExchangeContract,
   })
 
+  const nativeTokenId = 1
+
   return {
     ChainGemsContract,
     users,
+    nativeTokenId,
   }
 }
 
 describe('ChainGemsExchange contract tests', () => {
   it('should buy tokens with stablecoin', async () => {
     // Given
-    const { ChainGemsContract, users } = await setup()
+    const { ChainGemsContract, users, nativeTokenId } = await setup()
     const { deployer, userA } = users
     const tokenAmountToBuy = ethers.utils.parseUnits('1', 4)
     const maxStablecoinAmountToPay = ethers.utils.parseUnits('10', 4)
@@ -35,9 +37,13 @@ describe('ChainGemsExchange contract tests', () => {
 
     // When
     await userA.USDtoken.approve(userA.ChainGemsExchange.address, maxStablecoinAmountToPay)
-    const userBalanceBeforeBuy = await ChainGemsContract.balanceOf(userA.address, 0)
-    await userA.ChainGemsExchange.buyTokens(0, tokenAmountToBuy, maxStablecoinAmountToPay)
-    const userBalanceAfterBuy = await ChainGemsContract.balanceOf(userA.address, 0)
+    const userBalanceBeforeBuy = await ChainGemsContract.balanceOf(userA.address, nativeTokenId)
+    await userA.ChainGemsExchange.buyTokens(
+      nativeTokenId,
+      tokenAmountToBuy,
+      maxStablecoinAmountToPay,
+    )
+    const userBalanceAfterBuy = await ChainGemsContract.balanceOf(userA.address, nativeTokenId)
 
     // Then
     expect(userBalanceBeforeBuy).to.equal(0)
@@ -45,7 +51,7 @@ describe('ChainGemsExchange contract tests', () => {
   })
   it('should sell tokens for stablecoin', async () => {
     // Given
-    const { users } = await setup()
+    const { users, nativeTokenId } = await setup()
     const { deployer, userA } = users
     const tokenAmountToSell = ethers.utils.parseUnits('10', 4)
     const minStablecoinAmountToReceive = ethers.utils.parseUnits('1', 4)
@@ -54,7 +60,7 @@ describe('ChainGemsExchange contract tests', () => {
     await deployer.ChainGems.safeTransferFrom(
       deployer.address,
       userA.address,
-      0,
+      nativeTokenId,
       tokenAmountToSell,
       '0x',
     )
@@ -62,7 +68,11 @@ describe('ChainGemsExchange contract tests', () => {
     // When
     const userBalanceBeforeSell = await userA.USDtoken.balanceOf(userA.address)
     await userA.ChainGems.setApprovalForAll(userA.ChainGemsExchange.address, true)
-    await userA.ChainGemsExchange.sellTokens(0, tokenAmountToSell, minStablecoinAmountToReceive)
+    await userA.ChainGemsExchange.sellTokens(
+      nativeTokenId,
+      tokenAmountToSell,
+      minStablecoinAmountToReceive,
+    )
     const userBalanceAfterSell = await userA.USDtoken.balanceOf(userA.address)
 
     // Then
@@ -71,13 +81,13 @@ describe('ChainGemsExchange contract tests', () => {
   })
   it('should get stablecoin amount in', async () => {
     // Given
-    const { users } = await setup()
+    const { users, nativeTokenId } = await setup()
     const { userA } = users
     const tokenAmountToBuy = '1000'
 
     // When
     const stablecoinAmountOut = await userA.ChainGemsExchange.getStableCoinAmountIn(
-      0,
+      nativeTokenId,
       tokenAmountToBuy,
     )
 
@@ -86,13 +96,13 @@ describe('ChainGemsExchange contract tests', () => {
   })
   it('should get token amount out', async () => {
     // Given
-    const { users } = await setup()
+    const { users, nativeTokenId } = await setup()
     const { userA } = users
     const tokenAmountToSell = '1000'
 
     // When
     const tokenAmountOut = await userA.ChainGemsExchange.getStableCoinAmountOut(
-      0,
+      nativeTokenId,
       tokenAmountToSell,
     )
 

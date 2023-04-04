@@ -24,7 +24,7 @@ describe('ChainGems contract tests', () => {
     const initialSupply = (10 ** 18).toString()
 
     // When
-    const deployerBalance = await ChainGemsContract.balanceOf(deployer.address, 0)
+    const deployerBalance = await ChainGemsContract.balanceOf(deployer.address, 1)
 
     // Then
     expect(deployerBalance.toString()).to.equal(initialSupply)
