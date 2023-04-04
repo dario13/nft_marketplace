@@ -10,23 +10,23 @@ import '@openzeppelin/contracts/access/Ownable.sol';
  * @dev Inherits from ERC1155 and Ownable contracts.
  */
 contract ChainGems is ERC1155, Ownable {
-    uint256 public constant NATIVE_TOKEN = 0;
-    uint256 public constant B_ZERO1_RING = 1;
-    uint256 public constant SERPENTI_VIPER_BRACELET = 2;
+    uint256 public constant NATIVE_TOKEN = 1;
+    uint256 public constant B_ZERO1_RING = 2;
+    uint256 public constant SERPENTI_VIPER_BRACELET = 3;
+    string public constant baseURI =
+        'https://bafybeihg4hycpp4itvsviu6flxf624dgaeyvnprnc4kx7akjzpb5iggxaa.ipfs.nftstorage.link/{id}.json';
 
     mapping(uint256 => string) private _uris;
 
     /**
      * @dev Constructor that mints initial tokens and sets the initial URI.
      */
-    constructor()
-        ERC1155(
-            'https://bafybeihg4hycpp4itvsviu6flxf624dgaeyvnprnc4kx7akjzpb5iggxaa.ipfs.nftstorage.link/{id}.json'
-        )
-    {
+    constructor() ERC1155(baseURI) {
         _mint(msg.sender, NATIVE_TOKEN, 10 ** 18, '');
         _mint(msg.sender, B_ZERO1_RING, 15, '');
         _mint(msg.sender, SERPENTI_VIPER_BRACELET, 15, '');
+        setTokenURI(B_ZERO1_RING, baseURI);
+        setTokenURI(SERPENTI_VIPER_BRACELET, baseURI);
     }
 
     /**
@@ -34,7 +34,7 @@ contract ChainGems is ERC1155, Ownable {
      * @param tokenId The token ID to query the URI of.
      * @return The URI for the given tokenId.
      */
-    function uri(uint256 tokenId) public view override returns (string memory) {
+    function getUri(uint256 tokenId) public view returns (string memory) {
         return (_uris[tokenId]);
     }
 

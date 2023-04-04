@@ -13,7 +13,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   log('----------------------------------------------------')
   const ChainGemsContract: ChainGems = await ethers.getContract('ChainGems')
   const USDtokenContract: USDtoken = await ethers.getContract('USDtoken')
-  const nativeTokenId = 0
+  const nativeTokenId = 1
 
   try {
     const { address: exchangeAddress } = await deploy('ChainGemsExchange', {

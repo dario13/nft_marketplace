@@ -14,7 +14,7 @@ const getEnvConstants = (): EnvConstants => {
     USD_TOKEN_CONTRACT_ADDRESS: deployedContractAddresses.USDtoken,
     CHAIN_GEMS_EXCHANGE_CONTRACT_ADDRESS: deployedContractAddresses.ChainGemsExchange,
     BLOCK_CONFIRMATIONS: deployedContractAddresses.blockConfirmations,
-    CHAIN_GEMS_NATIVE_TOKEN_ID: 0,
+    CHAIN_GEMS_NATIVE_TOKEN_ID: 1,
   }
 }
 
