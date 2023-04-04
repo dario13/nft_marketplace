@@ -4,10 +4,10 @@
   "publishConfig": {
     "@dario13:registry": "https://npm.pkg.github.com/dario13"
   },
-  "version": "0.0.19",
+  "version": "0.0.20",
   "license": "MIT",
   "dependencies": {
-    "@dario13/nft_marketplace_blockchain": "^0.0.19",
+    "@dario13/nft_marketplace_blockchain": "^0.0.20",
     "@react-spring/types": "^9.7.1",
     "@react-spring/web": "^9.7.1",
     "@react-three/drei": "^9.61.3",
