@@ -16,6 +16,10 @@ const MainNavbar = () => {
       label: 'Exchange',
       href: '/exchange',
     },
+    {
+      label: 'Sell',
+      href: '/sell',
+    },
   ]
 
   const renderLogo = () => {
