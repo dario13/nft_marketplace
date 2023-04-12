@@ -13,7 +13,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   }
 
   const filePath = path.join(__dirname, '..', 'deployed-contract-addresses.json')
-  fs.writeFile(filePath, JSON.stringify(contractList, null, 2))
+  await fs.writeFile(filePath, JSON.stringify(contractList, null, 2))
 
   console.log(`Contract addresses and names saved to ${filePath}`)
 }
